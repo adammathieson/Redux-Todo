@@ -7,7 +7,7 @@ class TodoForm extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            todo: '',
+            newTodo: '',
         };
 
         
@@ -21,10 +21,10 @@ class TodoForm extends Component {
         e.preventDefault();
 
         const todo = {
-            value: this.state.todo,
+            value: this.state.newTodo,
             completed: false
         };
-        
+
         this.props.addTodo(todo)
 
     }
@@ -39,7 +39,7 @@ class TodoForm extends Component {
                             name="todo" 
                             type="text" 
                             onChange={this.onChange} 
-                            value={this.state.todo} />
+                            value={this.state.newTodo} />
                     </div>
                     <br />
                     <button type="submit">Add Todo</button>

@@ -1,8 +1,12 @@
 import  { ADD_TODO } from '../actions/types';
 
 const initialState = {
-    todos: [],
-    todo: {}
+        todos: [
+            {
+                value: 'walk the dog',
+                completed: false
+            }
+        ]
 }
 
 export default function(state = initialState, action) {
@@ -10,7 +14,7 @@ export default function(state = initialState, action) {
         case ADD_TODO:
             return {
                 ...state,
-                todo: action.payload
+                todos: action.payload
             }
         default: 
         return state;

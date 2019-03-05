@@ -5,21 +5,20 @@ import { addTodo } from '../actions/todoActions';
 
 class Todos extends Component {
     componentWillReceiveProps(nextProps) {
-        if(nextProps.newTodo) {
-            this.props.todos.unshift(nextProps.newTodo);
+        if(nextProps.todo) {
+            this.props.todos.unshift(nextProps.todo);
         }
     };
 
     render() {
-        const todoItems = this.props.todos.map(todo => (
-            <ul key={todo.id}>
-                <li>{todo.value}</li>
-            </ul>
-        ))
         return (
             <div>
                 <h1>Todos</h1>
-                {todoItems}
+                {this.props.todos.map((todo, i) => (
+                    <ul>
+                        <li key={i} index={i}>{todo.value}</li>
+                    </ul>
+                ))}
             </div>
         );
     }
@@ -28,12 +27,13 @@ class Todos extends Component {
 Todos.propTypes = {
     addTodo: PropTypes.func.isRequired,
     todos: PropTypes.array.isRequired,
-    newTodo: PropTypes.object
+    todo: PropTypes.object
 }
 
-const mapStateToProps = state => ({
-    todos: state.todos.value,
-    newTodo: state.todo
-})
+const mapStateToProps = state => {
+    return {
+        todos: state.todos
+    }
+}
 
 export default connect(mapStateToProps, { addTodo })(Todos);
