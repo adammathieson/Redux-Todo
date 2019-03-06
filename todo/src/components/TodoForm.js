@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
-import PropTypes from 'prop-types';
-import { connect } from 'react-redux';
 import { addTodo } from '../actions/todoActions';
+import { connect } from 'react-redux';
 
 class TodoForm extends Component {
     constructor(props) {
@@ -9,25 +8,22 @@ class TodoForm extends Component {
         this.state = {
             newTodo: '',
         };
-
-        
     }
+
+    onSubmit = e => {
+        e.preventDefault();
+        const todo = {
+            value: this.state.newTodo,
+            completed: false
+        }
+        this.props.addTodo(todo)
+    }
+    
 
     onChange = e => {
         this.setState({[e.target.name]: e.target.value})
     }
 
-    onSubmit = e => {
-        e.preventDefault();
-
-        const todo = {
-            value: this.state.newTodo,
-            completed: false
-        };
-
-        this.props.addTodo(todo)
-
-    }
     render() {
         return (
             <div>
@@ -36,7 +32,7 @@ class TodoForm extends Component {
                     <div>
                         <label>Todo: </label><br />
                         <input 
-                            name="todo" 
+                            name="newTodo" 
                             type="text" 
                             onChange={this.onChange} 
                             value={this.state.newTodo} />
@@ -49,4 +45,4 @@ class TodoForm extends Component {
     }
 }
 
-export default TodoForm;
+export default connect(null, {addTodo})(TodoForm);

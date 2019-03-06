@@ -3,6 +3,8 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { addTodo } from '../actions/todoActions';
 
+import Todo from './Todo';
+
 class Todos extends Component {
     componentWillReceiveProps(nextProps) {
         if(nextProps.todo) {
@@ -14,11 +16,9 @@ class Todos extends Component {
         return (
             <div>
                 <h1>Todos</h1>
-                {this.props.todos.map((todo, i) => (
-                    <ul>
-                        <li key={i} index={i}>{todo.value}</li>
-                    </ul>
-                ))}
+                {this.props.todos.map((todo, index) => 
+                    <Todo todo={todo} index={index} key={index} />
+                )}
             </div>
         );
     }
