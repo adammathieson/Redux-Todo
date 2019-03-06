@@ -17,6 +17,10 @@ class TodoForm extends Component {
             completed: false
         }
         this.props.addTodo(todo)
+
+        this.setState({
+            newTodo: ''
+        })
     }
     
 

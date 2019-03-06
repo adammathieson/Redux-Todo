@@ -3,16 +3,17 @@ import { toggleTodo } from '../actions/todoActions';
 import { connect } from 'react-redux';
 
 class Todo extends Component {
-    
-    toggleTodo(e) {
+
+    toggleTodo = (e, index) => {
         e.preventDefault();
-        this.props.toggleTodo(this.props.index)
+        this.props.toggleTodo(index)
+        console.log('toggle')
     };
 
     render() {
         return (
             <ul>
-                <li onClick={toggleTodo}>
+                <li onClick={this.toggleTodo}>
                     {this.props.todo.value}
                 </li>
             </ul>

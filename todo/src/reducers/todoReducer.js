@@ -1,12 +1,7 @@
 import  { ADD_TODO, TOGGLE_TODO } from '../actions/types';
 
 const initialState = {
-        todos: [
-            {
-                value: 'walk the dog',
-                completed: false
-            }
-        ]
+        todos: []
 }
 
 export default function(state = initialState, action) {
@@ -22,8 +17,11 @@ export default function(state = initialState, action) {
                 todos: state.todos.map((todo, index) => {
                     if(index === action.payload) {
                         return {...todo, completed: !todo.completed}
+                        console.log('toDone')
                     }
+
                     return todo;
+                    
                 })
             }
         default: 
